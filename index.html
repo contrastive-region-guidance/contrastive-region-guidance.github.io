@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Contrastive Region Guidance: Improving Grounding in Vision-Language Models without Training">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contrastive Region Guidance: Improving Grounding in Vision-Language Models without Training</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h2 class="title is-2 publication-title">Contrastive Region Guidance: Improving Grounding <br> in Vision-Language Models without Training</h2>
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">
+              <a href="https://meetdavidwan.github.io/">David Wan</a>
+            </span>
+            <span class="author-block", style="padding-left:30px"> 
+              <a href="https://j-min.io">Jaemin Cho</a>
+            </span>
+            <span class="author-block", style="padding-left:30px"> 
+              <a href="https://esteng.github.io/">Elias Stengel-Eskin</a>
+            </span>
+            <span class="author-block", style="padding-left:30px">
+              <a href="https://www.cs.unc.edu/~mbansal/">Mohit Bansal</a>
+            </span>
+          </div>
+
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">UNC Chapel Hill</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/meetdavidwan/crg"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <h2 class="title is-3" style="text-align: center;">Method</h2>
+    <div class="container">
+      <center><img src="./static/images/method.jpg" style="object-fit:contain;max-width:85%;height:auto;"></center>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Highlighting particularly relevant regions of an image can improve the performance of vision-language models 
+            (VLMs) on various vision-language (VL) tasks by guiding the model to attend more closely to these regions of 
+            interest. For example, VLMs can be given a "visual prompt", where visual markers such as bounding boxes delineate 
+            key image regions; this approach has become popular due to the improvement it provides in tasks requiring region-level information. 
+            However, current VLMs that can incorporate visual guidance are either proprietary and expensive or require costly training on curated data 
+            that includes visual prompts. We introduce <b>Contrastive Region Guidance (CRG)</b>, a training-free guidance method that enables open-source VLMs to respond to visual prompts. 
+            CRG contrasts model outputs produced with and without visual prompts, factoring out biases revealed by the model when answering without the information required 
+            to produce a correct answer (i.e., the model's prior). CRG achieves substantial improvements in a wide variety of VL tasks: When region annotations are provided, 
+            CRG increases absolute accuracy by up to 11.1% on ViP-Bench, a collection of six diverse region-based tasks such as recognition, math, and object relationship reasoning. 
+            We also show CRG's applicability to spatial reasoning, where we obtain up to 10% improvement on the hardest setting of What'sUp, as well as to compositional generalization --
+            improving accuracy by 11.5% and 7.5% on two challenging splits from SugarCrepe -- and to image-text alignment for generated images, where we improve by up to 8.4 AUROC and 6.8 
+            F1 points on SeeTRUE. For cases that do not have reference regions for the prompt, we also show that CRG allows us to re-rank regions proposed by an object detection model 
+            in referring expression comprehension and phrase grounding benchmarks like RefCOCO/RefCOCO+/RefCOCOg and Flickr30K Entities, with an average improvement of 3.2% in accuracy 
+            when multiple proposals are available. In our analysis, we explore alternative masking strategies for CRG, demonstrate how CRG impacts the model's probability over relevant text phrases, 
+            and evaluate the role of the region guidance strength, empirically validating CRG's design choices.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <h2 class="title is-3" style="text-align: center;">Method</h2>
+    <div class="container">
+      <center><img src="./static/images/teaser.jpg" style="object-fit:contain;max-width:85%;height:auto;"></center>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+          <br>
+          We introduce <b>Contrastive Region Guidance</b> (CRG), a training-free visual grounding method that guides any VLM to focus on specific regions in an image. For any vision-language models (e.g., LLaVA), we generate output text conditoned on image and input text by:<br>
+          (1) Blacking out the important regions in the input image to find the model's response without visual evidence from the key region.<br>
+          (2) Factoring out this bias so that all outputs that do not rely on visual information from the key region will be down-weighted.<br>
+          <br>
+          On the right side of the first figure, we show applications of CRG to various VL tasks: <br>
+          <b>(a)</b>: When answering a visual question with ROI, CRG guides a VLM to answer about the specific region. <br>
+          <b>(b)</b>: Even when no specific regions are provided, we can leverage an object detector to find important objects and guide the VLM to focus on the objects. <br>
+          <b>(c)</b>: For image-text alignment, CRG guides the model to generate text related to the objects and their relations found in the images, leading to a 
+          higher probability for the correct text versus the incorrect text. <br>
+          <b>(d)</b>: CRG can also help VLMs to find the region corresponding to a given text from a set of multiple region proposals by finding the mask that provides the largest contrast.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <h2 class="title is-3" style="text-align: center;">Evaluation on Visual Prompt Following</h2>
+    <div class="container">
+      <center><img src="./static/images/table1_with_captions.png" style="object-fit:contain;max-width:60%;height:auto;"></center>
+      <br>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+          We evaluate on <a href="https://arxiv.org/abs/2312.00784">ViP-Bench</a>, comprised of 303 image-question pairs specifically designed to comprehensively
+          evaluate visual prompt following capabilities, with six categories: Object Recognition (Rec), OCR,
+          Knowledge (Know), Math , Object Relationship Reasoning (Rel), and Language
+          Generation (Lang).<br><br>
+          <b>Takeaways:</b><br>
+          1. CRG unlocks visual prompt following, matching fine-tuned models.<br>
+          2. CRG can also help models fine-tuned with visual prompts.<br>
+          3. CRG is more helpful to a stronger VLM backbone.<br>
+          4. Unlike CRG, Set-of-Mark prompting (Yang et al., 2023) is not effective on LLaVA-based models.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <h2 class="title is-3" style="text-align: center;">Evaluation on Image-Text Alignment (Spatial Understanding, Compositionality, Generated Image Evaluation)</h2>
+    <div class="container">
+      <center><img src="./static/images/table2_with_captions.png" style="object-fit:contain;max-width:50%;height:auto;"></center>
+      <br>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <b>Takeaway:</b> CRG improves <b>spatial understanding</b> in VLMs evaluated on <a href="https://arxiv.org/abs/2310.19785">What'sUp</a> dataset, and <b>compositional generalization</b> of VLMs on <a href="https://arxiv.org/abs/2306.14610">SugarCrepe</a>'s swap-att and swap-obj splits.
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <center><img src="./static/images/table3_with_captions.png" style="object-fit:contain;max-width:50%;height:auto;"></center>
+      <br>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+          <b>Takeaway:</b> CRG helps measure the <b>alignments between text and generated images</b> on <a href="https://arxiv.org/abs/2305.10400">SeeTRUE</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+  </section>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <h2 class="title is-3" style="text-align: center;">  Evaluation on Referring Expression Comprehension and Phrase Grounding</h2>
+      <div class="container">
+      <center><img src="./static/images/table4_with_captions.png" style="object-fit:contain;max-width:60%;height:auto;"></center>
+      <br>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <b>Takeaway:</b> CRG improves <b>region-text alignment</b> in VLMs for re-ranking bounding box proposals on <a href="https://github.com/lichengunc/refer">RefCOCO/+/g</a> and <a href="https://bryanplummer.com/Flickr30kEntities/">Flickr30K Entities</a>.
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <h2 class="title is-3" style="text-align: center;">Analysis</h2>
+    <div class="container">
+      <center>
+        <img src="./static/images/figure3.png" style="object-fit:contain;max-width:45%;height:auto;">
+        <img src="./static/images/table5_with_captions.png" style="object-fit:contain;max-width:45%;height:auto;">
+      </center>
+      <br>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            We investigate the impact of different region guidance strategies, including contrasting original
+            images with another image (e.g., images where different regions are blacked out) and overlaying
+            visual markers (e.g., bounding box and segmentation mask) on the What’sUp benchmark.<br>
+          <br>
+          <b>Takeaways:</b><br>
+          1. Blacking out only the relevant regions is important.<br>
+          2. Simply overlaying visual markers without CRG is ineffective for pre-trained VLMs.<br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <h2 class="title is-3" style="text-align: center;">Examples</h2>
+    <div class="container">
+        <center><img src="./static/images/example1.png" style="object-fit:contain;max-width:25%;height:auto;" ></center>
+        <br>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="content has-text-justified">
+              <p>
+              <b>Question</b>: What is the value of the variable in the equation within the purple rectangle?<br>
+              <b>LLaVA-1.6-34B</b>: The equation within the purple rectangle is: 10 + a = 12. To find the value of the variable 'a', you need to solve for 'a'. You can do this by subtracting 10 from both sides of the equation: a = 12 - 10. a = 2. So the value of 'a' in the equation within the purple rectangle is 2. <br>
+              <b>LLaVA-1.6-34B+CRG (Ours)</b>: The equation within the purple rectangle reads: 34 + y = 39. To find the value of the variable 'y', you subtract 34 from both sides of the equation: 34 + y = 39. y = 39 - 34. y = 5. So, the value of 'y' in this equation is 5.
+              </p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="hero-body"> 
+    <div class="container">
+      <center><img src="./static/images/example2.png" style="object-fit:contain;max-width:50%;height:auto;"></center>
+      <br>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+            <b>Question</b>: What is the color of the clothing of the person within the yellow rectangle?<br>
+            <b>ViP-LLaVA-13B</b>: The person within the yellow rectangle is wearing white clothing.<br>
+            <b>LLaVA-1.6-34B</b>: The person within the yellow rectangle is wearing a brown coat and a white shirt. <br>
+            <b>LLaVA-1.6-34B+CRG (Ours)</b>: The person within the yellow rectangle is wearing a long, gray dress with what appears to be a fitted bodice and a flowing skirt.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-body"> 
+    <div class="container">
+      <center><img src="./static/images/example3.png" style="object-fit:contain;max-width:50%;height:auto;"></center>
+      <br>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+            <b>Question</b>: Which plant is the tallest? Plant 1: the plant within the purple rectangle,
+            Plant 2: the plant within the red rectangle, or Plant 3: the plant within the yellow rectangle?<br>
+            <b>ViP-LLaVA-13B</b>: Plant 1, the plant within the purple rectangle, is the tallest.<br>
+            <b>LLaVA-1.6-34B</b>: The tallest plant in the image is the one within the purple rectangle. <br>
+            <b>LLaVA-1.6-34B+CRG (Ours)</b>: Based on the image provided, Plant 2 within the red rectangle appears to be the tallest
+            among the three highlighted plants.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-body"> 
+    <div class="container">
+      <center><img src="./static/images/example4.png" style="object-fit:contain;max-width:50%;height:auto;"></center>
+      <br>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+            <b>Question</b>: What is the color of the clothing of the person within the yellow rectangle?<br>
+            <b>ViP-LLaVA-13B</b>: The person within the yellow rectangle is wearing a black suit.<br>
+            <b>LLaVA-1.6-34B</b>: The person within the yellow rectangle is wearing a white shirt. <br>
+            <b>LLaVA-1.6-34B+CRG (Ours)</b>: The person within the yellow rectangle is wearing black clothing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{Wan2024CRG,
+  author    = {David Wan and Jaemin Cho and Elias Stengel-Eskin and Mohit Bansal},
+  title     = {Contrastive Region Guidance: Improving Grounding in Vision-Language Models without Training},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted from <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
